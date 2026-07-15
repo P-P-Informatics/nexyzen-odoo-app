@@ -31,22 +31,25 @@ class CcConfig(models.Model):
     api_url = fields.Char(
         string='Webservice URL',
         required=True,
-        default='http://host.docker.internal/cc_webapp/webservices/index.php',
+        default='https://webapp.nexyzen.com/webservices/index.php',
         help="Address of the Nexyzen webservice "
              "(points to .../webservices/index.php).",
     )
     cod_affiliato = fields.Char(
         string='Affiliate code',
         required=True,
-        default='CdC',
+        default='odoo',
         help="Affiliate code provided by Nexyzen "
-             "(commerciale@cameracompensazione.it).",
+             "(commerciale@cameracompensazione.it). The default 'odoo' account "
+             "runs in test mode (invoices are validated but not persisted); "
+             "enter your own credentials to send for real.",
     )
     token = fields.Char(
         string='Token',
         required=True,
-        default='zpHNq69sNto3WWOfYGegcJ8VLJG36Bdj',
-        help="Access token provided by Nexyzen.",
+        default='FutyWHVO84xdS0ZQ5fDduOjfNdheSz27',
+        help="Access token provided by Nexyzen. Replace with your own to send "
+             "invoices for real.",
     )
     email_proponente = fields.Char(
         string='Notification email',

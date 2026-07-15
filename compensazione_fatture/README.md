@@ -55,12 +55,14 @@ Ogni manuale ha anche la versione `.html`. Screenshot in `docs/img/` (una
 sottocartella per lingua: `it/`, `en/`, `de/`, `sl/`, `fr/`, `es/`).
 Rigenerabili con `build_manual.py` (IT) e `build_manuals.py` (le altre).
 
-## Ambiente Docker / produzione
+## Endpoint e credenziali
 
-Odoo gira in container, il webservice di test è sull'host: URL di default
+URL di default del webservice: **`https://webapp.nexyzen.com/webservices/index.php`**
+(produzione). Ogni cliente inserisce le proprie **credenziali** (codice affiliato +
+token) fornite da Nexyzen — non sono precompilate.
+
+Per i test in locale (Docker + webservice sull'host) impostare l'URL a
 `http://host.docker.internal/cc_webapp/webservices/index.php`.
-In produzione impostare `https://webapp.cameracompensazione.it/webservices/index.php`
-e le credenziali reali (cod. affiliato + token) fornite da Nexyzen.
 
 ## Test
 
