@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_cc_root"
+              name="Nexyzen"
+              web_icon="compensazione_fatture,static/description/icon.png"
+              sequence="90"/>
+
+    <menuitem id="menu_cc_invio"
+              name="Invoices to offset"
+              parent="menu_cc_root"
+              action="action_cc_invio"
+              sequence="10"/>
+
+    <menuitem id="menu_cc_config"
+              name="Settings"
+              parent="menu_cc_root"
+              action="action_cc_config_open"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,518 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* compensazione_fatture
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: German / Deutsch\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_invio.py:0
+msgid "%(ok)s sent, %(err)s in error."
+msgstr "%(ok)s gesendet, %(err)s mit Fehler."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__token
+msgid "Access token provided by Nexyzen."
+msgstr "Von Nexyzen bereitgestellter Zugriffstoken."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__api_url
+msgid ""
+"Address of the Nexyzen webservice (points to .../webservices/index.php)."
+msgstr "Adresse des Nexyzen-Webservice (verweist auf .../webservices/index.php)."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__cod_affiliato
+msgid "Affiliate code"
+msgstr "Partnercode"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__cod_affiliato
+msgid ""
+"Affiliate code provided by Nexyzen (commerciale@cameracompensazione.it)."
+msgstr "Von Nexyzen bereitgestellter Partnercode (commerciale@cameracompensazione.it)."
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Amount range (residual)"
+msgstr "Betragsbereich (Restbetrag)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_invio__importo_residuo
+msgid ""
+"Amount that will be sent for offsetting. Pre-filled with the unpaid "
+"residual; editable before sending."
+msgstr "Betrag, der zur Verrechnung gesendet wird. Vorbelegt mit dem offenen Restbetrag; vor dem Senden bearbeitbar."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__importo_residuo
+msgid "Amount to offset"
+msgstr "Zu verrechnender Betrag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_config__modalita__auto
+msgid "Automatic"
+msgstr "Automatisch"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__modalita
+msgid ""
+"Automatic: invoices are sent immediately. With manual approval: a list is "
+"prepared for you to review before sending."
+msgstr "Automatisch: Rechnungen werden sofort gesendet. Mit manueller Freigabe: eine Liste wird zur Prüfung vor dem Senden vorbereitet."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__config_id
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Connection"
+msgstr "Verbindung"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+#: code:addons/compensazione_fatture/models/cc_invio.py:0
+msgid "Connection failed: %s"
+msgstr "Verbindung fehlgeschlagen: %s"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "Connection successful"
+msgstr "Verbindung erfolgreich"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__giorni_min
+msgid ""
+"Consider invoices whose due date is at least this many days away. Negative "
+"values = already overdue. E.g. -3650 includes every overdue invoice."
+msgstr "Rechnungen berücksichtigen, deren Fälligkeit mindestens so viele Tage entfernt ist. Negative Werte = bereits überfällig. Z. B. -3650 schließt alle überfälligen Rechnungen ein."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__giorni_max
+msgid ""
+"Consider invoices whose due date is at most this many days away. E.g. 30 = "
+"due within 30 days."
+msgstr "Rechnungen berücksichtigen, deren Fälligkeit höchstens so viele Tage entfernt ist. Z. B. 30 = fällig innerhalb von 30 Tagen."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__create_uid
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__create_date
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__tipo__v
+msgid "Customer invoice (active)"
+msgstr "Ausgangsrechnung (aktiv)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__invia_vendite
+msgid "Customer invoices (active)"
+msgstr "Ausgangsrechnungen (aktiv)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__partner_id
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
+msgid "Customer/Vendor"
+msgstr "Kunde/Lieferant"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__display_name
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__data_scadenza
+msgid "Due date"
+msgstr "Fälligkeitsdatum"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Due date (days from today)"
+msgstr "Fälligkeit (Tage ab heute)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__email_proponente
+msgid "Email to which Nexyzen sends confirmations/notifications (optional)."
+msgstr "E-Mail, an die Nexyzen Bestätigungen/Benachrichtigungen sendet (optional)."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__state__errore
+msgid "Error"
+msgstr "Fehler"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_ven
+msgid "Friday"
+msgstr "Freitag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorni_min
+msgid "From (days to due date)"
+msgstr "Ab (Tage bis Fälligkeit)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__id
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__id
+msgid "ID"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__partner_ids
+msgid "If empty, all customers/vendors are considered."
+msgstr "Wenn leer, werden alle Kunden/Lieferanten berücksichtigt."
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
+msgid "In error"
+msgstr "Fehlerhaft"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__move_id
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: compensazione_fatture
+#: model:ir.model,name:compensazione_fatture.model_cc_invio
+msgid "Invoice sent to Nexyzen"
+msgstr "An Nexyzen gesendete Rechnung"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_form
+msgid "Invoice to offset"
+msgstr "Zu verrechnende Rechnung"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+#: model:ir.actions.act_window,name:compensazione_fatture.action_cc_invio
+#: model:ir.ui.menu,name:compensazione_fatture.menu_cc_invio
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_list
+msgid "Invoices to offset"
+msgstr "Zu verrechnende Rechnungen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__write_uid
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__write_date
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Limit to customers/vendors (optional)"
+msgstr "Auf Kunden/Lieferanten beschränken (optional)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__importo_max
+msgid "Maximum amount"
+msgstr "Höchstbetrag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__importo_min
+msgid "Minimum amount"
+msgstr "Mindestbetrag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__cellulare_proponente
+msgid "Mobile number for SMS notifications (optional)."
+msgstr "Mobilnummer für SMS-Benachrichtigungen (optional)."
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Mode"
+msgstr "Modus"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_lun
+msgid "Monday"
+msgstr "Montag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__name
+msgid "Name"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.ui.menu,name:compensazione_fatture.menu_cc_root
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Nexyzen"
+msgstr "Nexyzen"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+#: model:ir.actions.server,name:compensazione_fatture.action_cc_config_open
+#: model:ir.model,name:compensazione_fatture.model_cc_config
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Nexyzen Settings"
+msgstr "Nexyzen-Einstellungen"
+
+#. module: compensazione_fatture
+#: model:ir.actions.server,name:compensazione_fatture.ir_cron_cc_giornaliero_ir_actions_server
+msgid "Nexyzen: daily invoice sending"
+msgstr "Nexyzen: täglicher Rechnungsversand"
+
+#. module: compensazione_fatture
+#: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_invio
+msgid "No invoices to offset"
+msgstr "Keine zu verrechnenden Rechnungen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__email_proponente
+msgid "Notification email"
+msgstr "Benachrichtigungs-E-Mail"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__cellulare_proponente
+msgid "Notification mobile"
+msgstr "Benachrichtigungs-Mobilnummer"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__numero_fattura
+msgid "Number"
+msgstr "Nummer"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__importo_max
+msgid ""
+"Only send invoices with a residual amount <= this value. 0 = no upper limit."
+msgstr "Nur Rechnungen mit einem Restbetrag <= diesem Wert senden. 0 = keine Obergrenze."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__importo_min
+msgid "Only send invoices with a residual amount >= this value."
+msgstr "Nur Rechnungen mit einem Restbetrag >= diesem Wert senden."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__partner_ids
+msgid "Only these customers/vendors"
+msgstr "Nur diese Kunden/Lieferanten"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_invio.py:0
+msgid "Partial sending"
+msgstr "Teilweiser Versand"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__messaggio
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_form
+msgid "Result"
+msgstr "Ergebnis"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_sab
+msgid "Saturday"
+msgstr "Samstag"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Select and send now"
+msgstr "Jetzt auswählen und senden"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Selection criteria"
+msgstr "Auswahlkriterien"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_form
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_list
+msgid "Send to Nexyzen"
+msgstr "An Nexyzen senden"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Send your unpaid invoices to Nexyzen to offset them."
+msgstr "Senden Sie Ihre unbezahlten Rechnungen zur Verrechnung an Nexyzen."
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Sending"
+msgstr "Versand"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_invio.py:0
+msgid "Sending completed"
+msgstr "Versand abgeschlossen"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Sending days"
+msgstr "Versandtage"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_invio.py:0
+msgid "Sending failed"
+msgstr "Versand fehlgeschlagen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__modalita
+msgid "Sending mode"
+msgstr "Versandmodus"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__state__inviata
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
+msgid "Sent"
+msgstr "Gesendet"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__data_invio
+msgid "Sent on"
+msgstr "Gesendet am"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_invio.py:0
+msgid "Sent successfully."
+msgstr "Erfolgreich gesendet."
+
+#. module: compensazione_fatture
+#: model:ir.actions.act_window,name:compensazione_fatture.action_cc_config
+#: model:ir.ui.menu,name:compensazione_fatture.menu_cc_config
+msgid "Settings"
+msgstr "Einstellungen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__state
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
+msgid "Status"
+msgstr "Status"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Test connection"
+msgstr "Verbindung testen"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "The Nexyzen webservice responded correctly."
+msgstr "Der Nexyzen-Webservice hat korrekt geantwortet."
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "The VAT number of %s is missing."
+msgstr "Die USt-IdNr. von %s fehlt."
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "The VAT number of the company (%s) is missing."
+msgstr "Die USt-IdNr. des Unternehmens (%s) fehlt."
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "The date of invoice %s is missing."
+msgstr "Das Datum der Rechnung %s fehlt."
+
+#. module: compensazione_fatture
+#: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_invio
+msgid ""
+"The unpaid invoices to offset appear here after the cycle runs, "
+"automatically or from the Settings."
+msgstr "Die unbezahlten, zu verrechnenden Rechnungen erscheinen hier, nachdem der Zyklus läuft – automatisch oder über die Einstellungen."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_gio
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorni_max
+msgid "To (days to due date)"
+msgstr "Bis (Tage bis Fälligkeit)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__state__da_inviare
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
+msgid "To send"
+msgstr "Zu senden"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__token
+msgid "Token"
+msgstr "Token"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_mar
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__tipo
+msgid "Type"
+msgstr "Typ"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__tipo__a
+msgid "Vendor bill (passive)"
+msgstr "Eingangsrechnung (passiv)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__invia_acquisti
+msgid "Vendor bills (passive)"
+msgstr "Eingangsrechnungen (passiv)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__api_url
+msgid "Webservice URL"
+msgstr "Webservice-URL"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_mer
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Which invoices"
+msgstr "Welche Rechnungen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_config__modalita__manuale
+msgid "With manual approval"
+msgstr "Mit manueller Freigabe"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "id"
+msgstr ""
