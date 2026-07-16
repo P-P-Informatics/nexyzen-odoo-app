@@ -4,7 +4,7 @@
         <field name="name">cc.invio.list</field>
         <field name="model">cc.invio</field>
         <field name="arch" type="xml">
-            <list string="Invoices to offset"
+            <tree string="Invoices to offset"
                   editable="bottom"
                   decoration-success="state=='inviata'"
                   decoration-danger="state=='errore'"
@@ -27,7 +27,7 @@
                        decoration-danger="state=='errore'"/>
                 <field name="data_invio" readonly="1"/>
                 <field name="messaggio" readonly="1" optional="show"/>
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -93,7 +93,7 @@
     <record id="action_cc_invio" model="ir.actions.act_window">
         <field name="name">Invoices to offset</field>
         <field name="res_model">cc.invio</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="context">{'search_default_da_inviare': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
