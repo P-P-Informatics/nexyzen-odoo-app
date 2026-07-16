@@ -1,7 +1,7 @@
 {
     # Max 25 caratteri richiesti dallo store (qui 22).
     'name': 'Nexyzen Invoice Offset',
-    'version': '19.0.2.0.0',
+    'version': '18.0.2.0.0',
     'category': 'Accounting/Accounting',
     'summary': 'Send unpaid invoices to Nexyzen to offset them without bank costs',
     'description': """
