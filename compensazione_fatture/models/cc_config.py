@@ -330,7 +330,7 @@ class CcConfig(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Invoices to offset'),
             'res_model': 'cc.invio',
-            'view_mode': 'list,form',
+            'view_mode': 'tree,form',
             'domain': [('id', 'in', invii.ids)],
             'target': 'current',
         }
