@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cc_compensazione_list" model="ir.ui.view">
+        <field name="name">cc.compensazione.list</field>
+        <field name="model">cc.compensazione</field>
+        <field name="arch" type="xml">
+            <tree string="Proposed compensations"
+                  decoration-success="state=='accettata'"
+                  decoration-danger="state=='errore'"
+                  decoration-warning="state=='proposta' and richiede_anagrafica"
+                  decoration-muted="state=='proposta' and not richiede_anagrafica">
+                <header>
+                    <button name="action_accetta" type="object"
+                            string="Accept" class="btn-primary"/>
+                </header>
+                <field name="id_compensazione"/>
+                <field name="id_ciclo"/>
+                <field name="importo" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="credito_verso_ragsoc" string="Receivable towards"/>
+                <field name="debito_verso_ragsoc" string="Payable towards"/>
+                <field name="richiede_anagrafica" string="Registry data needed"/>
+                <field name="state" widget="badge"
+                       decoration-success="state=='accettata'"
+                       decoration-danger="state=='errore'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_cc_compensazione_form" model="ir.ui.view">
+        <field name="name">cc.compensazione.form</field>
+        <field name="model">cc.compensazione</field>
+        <field name="arch" type="xml">
+            <form string="Proposed compensation">
+                <header>
+                    <button name="action_accetta" type="object"
+                            string="Accept" class="btn-primary"
+                            invisible="state == 'accettata'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="proposta,accettata"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning" role="alert"
+                         invisible="not richiede_anagrafica or state == 'accettata'">
+                        Complete the registry data below before accepting this proposal.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="id_compensazione" readonly="1"/>
+                            <field name="id_ciclo" readonly="1"/>
+                            <field name="importo" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group invisible="state != 'accettata'">
+                            <field name="ciclo_completo" readonly="1"/>
+                            <field name="data_accettazione" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Receivable ceded (towards)">
+                        <field name="credito_verso_piva" readonly="1"/>
+                        <field name="credito_verso_ragsoc" readonly="1"/>
+                    </group>
+                    <group string="Payable offset (towards)">
+                        <field name="debito_verso_piva" readonly="1"/>
+                        <field name="debito_verso_ragsoc" readonly="1"/>
+                    </group>
+                    <group string="Assignment chain"
+                           invisible="not ceduto_a_piva and not ricevuto_da_piva">
+                        <field name="ceduto_a_piva" readonly="1"/>
+                        <field name="ceduto_a_ragsoc" readonly="1"/>
+                        <field name="ricevuto_da_piva" readonly="1"/>
+                        <field name="ricevuto_da_ragsoc" readonly="1"/>
+                    </group>
+                    <field name="fattura_ids" readonly="1">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="ruolo"/>
+                            <field name="numero"/>
+                            <field name="data"/>
+                            <field name="importo_totale"/>
+                            <field name="importo_residuo"/>
+                            <field name="currency_id" column_invisible="1"/>
+                        </tree>
+                    </field>
+                    <group string="Legal basis">
+                        <field name="base_legale" nolabel="1" readonly="1"/>
+                    </group>
+                    <group string="Registry data to complete"
+                           invisible="not richiede_anagrafica">
+                        <field name="anagrafica_mancante" readonly="1"
+                               string="Fields requested by Nexyzen"/>
+                        <field name="anagrafica_ragione_sociale"/>
+                        <field name="anagrafica_indirizzo"/>
+                        <field name="anagrafica_cap"/>
+                        <field name="anagrafica_comune"/>
+                        <field name="anagrafica_provincia"/>
+                        <field name="anagrafica_nazione"/>
+                        <field name="anagrafica_email"/>
+                        <field name="anagrafica_telefono"/>
+                        <field name="anagrafica_nome_legale_rappresentante"/>
+                        <field name="anagrafica_cognome_legale_rappresentante"/>
+                        <field name="anagrafica_cf_legale_rappresentante"/>
+                        <field name="anagrafica_qualita_legale_rappresentante"/>
+                        <field name="anagrafica_luogo_nascita_legale_rappresentante"/>
+                        <field name="anagrafica_data_nascita_legale_rappresentante"/>
+                        <field name="anagrafica_email_legale_rappresentante"/>
+                    </group>
+                    <group string="Result">
+                        <field name="messaggio" nolabel="1" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cc_compensazione_search" model="ir.ui.view">
+        <field name="name">cc.compensazione.search</field>
+        <field name="model">cc.compensazione</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="id_compensazione"/>
+                <field name="credito_verso_ragsoc"/>
+                <field name="debito_verso_ragsoc"/>
+                <filter name="proposta" string="Waiting for acceptance"
+                        domain="[('state','=','proposta')]"/>
+                <filter name="accettata" string="Accepted"
+                        domain="[('state','=','accettata')]"/>
+                <filter name="errore" string="In error"
+                        domain="[('state','=','errore')]"/>
+                <filter name="richiede_anagrafica" string="Registry data needed"
+                        domain="[('richiede_anagrafica','=',True)]"/>
+                <separator/>
+                <filter name="group_state" string="Status"
+                        context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cc_compensazione" model="ir.actions.act_window">
+        <field name="name">Proposed compensations</field>
+        <field name="res_model">cc.compensazione</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_proposta': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No proposed compensation
+            </p>
+            <p>
+                Use the "Compensations to accept" menu to fetch the compensations proposed
+                by the Nexyzen clearing engine and waiting for your acceptance.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_cc_compensazione_fetch" model="ir.actions.server">
+        <field name="name">Compensations to accept</field>
+        <field name="model_id" ref="model_cc_config"/>
+        <field name="state">code</field>
+        <field name="code">action = model.get_config().action_fetch_compensazioni()</field>
+    </record>
+</odoo>

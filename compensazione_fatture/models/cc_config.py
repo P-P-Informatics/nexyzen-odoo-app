@@ -28,28 +28,21 @@ class CcConfig(models.Model):
     name = fields.Char(default='Nexyzen Settings', readonly=True)
 
     # --- Webservice connection -----------------------------------------------
+    # Parametri fissi del deployment: non esposti nell'interfaccia utente.
     api_url = fields.Char(
         string='Webservice URL',
         required=True,
         default='https://webapp.nexyzen.com/webservices/index.php',
-        help="Address of the Nexyzen webservice "
-             "(points to .../webservices/index.php).",
     )
     cod_affiliato = fields.Char(
         string='Affiliate code',
         required=True,
         default='odoo',
-        help="Affiliate code provided by Nexyzen "
-             "(commerciale@cameracompensazione.it). The default 'odoo' account "
-             "runs in test mode (invoices are validated but not persisted); "
-             "enter your own credentials to send for real.",
     )
     token = fields.Char(
         string='Token',
         required=True,
         default='FutyWHVO84xdS0ZQ5fDduOjfNdheSz27',
-        help="Access token provided by Nexyzen. Replace with your own to send "
-             "invoices for real.",
     )
     email_proponente = fields.Char(
         string='Notification email',
@@ -259,6 +252,23 @@ class CcConfig(models.Model):
         self.ensure_one()
         return CdcClient(self.api_url, self.cod_affiliato, self.token)
 
+    def _partita_iva(self):
+        """VAT number of the company, used to identify it towards the
+        compensations/letters channel."""
+        self.ensure_one()
+        vat = self.env.company.partner_id.vat
+        if not vat:
+            raise UserError(_(
+                "The VAT number of the company (%s) is missing.")
+                % self.env.company.name)
+        return vat
+
+    def _lingua(self):
+        """Language of the messages returned by the webservice (it|en)."""
+        self.ensure_one()
+        lang = self.env.user.lang or 'en_US'
+        return 'it' if lang.startswith('it') else 'en'
+
     def action_test_connessione(self):
         """Button: check that the credentials work."""
         self.ensure_one()
@@ -276,6 +286,146 @@ class CcConfig(models.Model):
                 'sticky': False,
             },
         }
+
+    # ==========================================================================
+    # Proposed compensations (channel described in swagger.yaml as
+    # "compensazioni"): fetch and reconcile with the local cc.compensazione
+    # records, so the user can complete the missing registry data and accept.
+    # ==========================================================================
+    def action_fetch_compensazioni(self):
+        self.ensure_one()
+        client = self._client()
+        try:
+            client.connect()
+            resp = client.get_compensazioni(self._partita_iva(), lingua=self._lingua())
+        except CdcApiError as exc:
+            raise UserError(_(
+                "Unable to retrieve the proposed compensations: %s") % exc)
+
+        compensazioni = resp.get('compensazioni') or [] if isinstance(resp, dict) else []
+        Comp = self.env['cc.compensazione']
+        ids_server = set()
+        for c in compensazioni:
+            ids_server.add(c['id_compensazione'])
+            vals = self._vals_da_compensazione(c)
+            existing = Comp.search([
+                ('config_id', '=', self.id),
+                ('id_compensazione', '=', c['id_compensazione']),
+            ], limit=1)
+            if existing:
+                existing.write(vals)
+            else:
+                Comp.create(vals)
+
+        # Proposals no longer offered (accepted elsewhere, withdrawn or
+        # expired) are dropped from the "waiting" list, same logic as the
+        # "to send" rows in esegui_ciclo().
+        stale = Comp.search([
+            ('config_id', '=', self.id),
+            ('state', '=', 'proposta'),
+            ('id_compensazione', 'not in', list(ids_server)),
+        ])
+        stale.unlink()
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Proposed compensations'),
+            'res_model': 'cc.compensazione',
+            'view_mode': 'list,form',
+            'target': 'current',
+        }
+
+    def _vals_da_compensazione(self, c):
+        self.ensure_one()
+        credito = c.get('credito_verso') or {}
+        debito = c.get('debito_verso') or {}
+        ceduto_a = c.get('credito_ceduto_a') or {}
+        ricevuto_da = c.get('credito_ricevuto_da') or {}
+
+        linee = []
+        for f in credito.get('fatture') or []:
+            linee.append((0, 0, {
+                'ruolo': 'credito',
+                'numero': f.get('numero'),
+                'data': f.get('data'),
+                'importo_totale': f.get('importo_totale'),
+                'importo_residuo': f.get('importo_residuo'),
+            }))
+        for f in debito.get('fatture') or []:
+            linee.append((0, 0, {
+                'ruolo': 'debito',
+                'numero': f.get('numero'),
+                'data': f.get('data'),
+                'importo_totale': f.get('importo_totale'),
+                'importo_residuo': f.get('importo_residuo'),
+            }))
+
+        return {
+            'config_id': self.id,
+            'id_compensazione': c['id_compensazione'],
+            'id_ciclo': c.get('id_ciclo'),
+            'importo': c.get('importo'),
+            'token': c.get('token'),
+            'base_legale': c.get('base_legale'),
+            'credito_verso_piva': credito.get('partita_iva'),
+            'credito_verso_ragsoc': credito.get('ragione_sociale'),
+            'debito_verso_piva': debito.get('partita_iva'),
+            'debito_verso_ragsoc': debito.get('ragione_sociale'),
+            'ceduto_a_piva': ceduto_a.get('partita_iva'),
+            'ceduto_a_ragsoc': ceduto_a.get('ragione_sociale'),
+            'ricevuto_da_piva': ricevuto_da.get('partita_iva'),
+            'ricevuto_da_ragsoc': ricevuto_da.get('ragione_sociale'),
+            'anagrafica_mancante': ', '.join(c.get('anagrafica_mancante') or []),
+            'fattura_ids': [(5, 0, 0)] + linee,
+            'state': 'proposta',
+        }
+
+    # ==========================================================================
+    # Credit-assignment letters (channel described in swagger.yaml as
+    # "compensazioni" / /lettere_cessione).
+    # ==========================================================================
+    def action_fetch_lettere(self, tutte=False):
+        self.ensure_one()
+        client = self._client()
+        try:
+            client.connect()
+            resp = client.get_lettere_cessione(
+                self._partita_iva(), lingua=self._lingua(), tutte=tutte)
+        except CdcApiError as exc:
+            raise UserError(_(
+                "Unable to retrieve the credit-assignment letters: %s") % exc)
+
+        lettere = resp.get('lettere') or [] if isinstance(resp, dict) else []
+        Lettera = self.env['cc.lettera']
+        for l in lettere:
+            vals = {
+                'config_id': self.id,
+                'lettera_id_cc': l['id'],
+                'id_compensazione': l.get('id_compensazione'),
+                'oggetto': l.get('oggetto'),
+                'corpo_html': l.get('corpo_html'),
+                'data_creazione': l.get('creata'),
+                'data_consegna': l.get('consegnata') or False,
+            }
+            existing = Lettera.search([
+                ('config_id', '=', self.id),
+                ('lettera_id_cc', '=', l['id']),
+            ], limit=1)
+            if existing:
+                existing.write(vals)
+            else:
+                Lettera.create(vals)
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Credit-assignment letters'),
+            'res_model': 'cc.lettera',
+            'view_mode': 'list,form',
+            'target': 'current',
+        }
+
+    def action_fetch_lettere_tutte(self):
+        return self.action_fetch_lettere(tutte=True)
 
     # ==========================================================================
     # Cycle execution
@@ -330,7 +480,7 @@ class CcConfig(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Invoices to offset'),
             'res_model': 'cc.invio',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('id', 'in', invii.ids)],
             'target': 'current',
         }
