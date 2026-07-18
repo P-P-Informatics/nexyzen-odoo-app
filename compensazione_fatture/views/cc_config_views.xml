@@ -53,11 +53,8 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Connection">
+                        <page string="Notifications">
                             <group>
-                                <field name="api_url"/>
-                                <field name="cod_affiliato"/>
-                                <field name="token" password="True"/>
                                 <field name="email_proponente"/>
                                 <field name="cellulare_proponente"/>
                             </group>

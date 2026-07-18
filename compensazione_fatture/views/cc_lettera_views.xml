@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cc_lettera_list" model="ir.ui.view">
+        <field name="name">cc.lettera.list</field>
+        <field name="model">cc.lettera</field>
+        <field name="arch" type="xml">
+            <list string="Credit-assignment letters"
+                  decoration-bf="not data_consegna">
+                <field name="lettera_id_cc" string="Letter"/>
+                <field name="id_compensazione" string="Compensation"/>
+                <field name="oggetto"/>
+                <field name="data_creazione"/>
+                <field name="data_consegna"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cc_lettera_form" model="ir.ui.view">
+        <field name="name">cc.lettera.form</field>
+        <field name="model">cc.lettera</field>
+        <field name="arch" type="xml">
+            <form string="Credit-assignment letter">
+                <header>
+                    <button name="action_stampa_pdf" type="object"
+                            string="Print / Download PDF" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="lettera_id_cc" readonly="1"/>
+                            <field name="id_compensazione" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="data_creazione" readonly="1"/>
+                            <field name="data_consegna" readonly="1"/>
+                        </group>
+                    </group>
+                    <field name="oggetto" readonly="1"/>
+                    <field name="corpo_html" readonly="1" nolabel="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cc_lettera_search" model="ir.ui.view">
+        <field name="name">cc.lettera.search</field>
+        <field name="model">cc.lettera</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="lettera_id_cc"/>
+                <field name="id_compensazione"/>
+                <field name="oggetto"/>
+                <filter name="nuove" string="Not yet retrieved"
+                        domain="[('data_consegna','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cc_lettera" model="ir.actions.act_window">
+        <field name="name">Credit-assignment letters</field>
+        <field name="res_model">cc.lettera</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No credit-assignment letter
+            </p>
+            <p>
+                Use the "Credit-assignment letters" menu to fetch the letters deposited by
+                Nexyzen once a compensation cycle is complete.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_cc_lettera_fetch" model="ir.actions.server">
+        <field name="name">Credit-assignment letters</field>
+        <field name="model_id" ref="model_cc_config"/>
+        <field name="state">code</field>
+        <field name="code">action = model.get_config().action_fetch_lettere()</field>
+    </record>
+</odoo>

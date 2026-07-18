@@ -11,6 +11,18 @@
               action="action_cc_invio"
               sequence="10"/>
 
+    <menuitem id="menu_cc_compensazione"
+              name="Compensations to accept"
+              parent="menu_cc_root"
+              action="action_cc_compensazione_fetch"
+              sequence="15"/>
+
+    <menuitem id="menu_cc_lettera"
+              name="Credit-assignment letters"
+              parent="menu_cc_root"
+              action="action_cc_lettera_fetch"
+              sequence="17"/>
+
     <menuitem id="menu_cc_config"
               name="Settings"
               parent="menu_cc_root"
