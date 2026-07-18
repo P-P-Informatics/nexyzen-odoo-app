@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_cc_config_user,cc.config.user,model_cc_config,account.group_account_invoice,1,1,1,1
 access_cc_invio_user,cc.invio.user,model_cc_invio,account.group_account_invoice,1,1,1,1
+access_cc_compensazione_user,cc.compensazione.user,model_cc_compensazione,account.group_account_invoice,1,1,1,1
+access_cc_compensazione_fattura_user,cc.compensazione.fattura.user,model_cc_compensazione_fattura,account.group_account_invoice,1,1,1,1
+access_cc_lettera_user,cc.lettera.user,model_cc_lettera,account.group_account_invoice,1,1,1,1

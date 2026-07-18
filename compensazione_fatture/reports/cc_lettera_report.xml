@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_cc_lettera_document">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <t t-out="doc.corpo_html"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_cc_lettera" model="ir.actions.report">
+        <field name="name">Credit-assignment letter</field>
+        <field name="model">cc.lettera</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">compensazione_fatture.report_cc_lettera_document</field>
+        <field name="report_file">compensazione_fatture.report_cc_lettera_document</field>
+        <field name="print_report_name">'Lettera_cessione_%s' % (object.lettera_id_cc)</field>
+        <field name="binding_model_id" ref="model_cc_lettera"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

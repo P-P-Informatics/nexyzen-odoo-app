@@ -16,20 +16,69 @@ msgstr ""
 
 #. module: compensazione_fatture
 #. odoo-python
+#: code:addons/compensazione_fatture/models/cc_compensazione.py:0
+msgid "#%s: %s"
+msgstr "#%s: %s"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_compensazione.py:0
+msgid "%(ok)s accepted, %(err)s in error."
+msgstr "%(ok)s akzeptiert, %(err)s mit Fehler."
+
+#. module: compensazione_fatture
+#. odoo-python
 #: code:addons/compensazione_fatture/models/cc_invio.py:0
 msgid "%(ok)s sent, %(err)s in error."
 msgstr "%(ok)s gesendet, %(err)s mit Fehler."
 
 #. module: compensazione_fatture
-#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__token
-msgid "Access token provided by Nexyzen."
-msgstr "Von Nexyzen bereitgestellter Zugriffstoken."
+#: model:ir.actions.report,print_report_name:compensazione_fatture.action_report_cc_lettera
+msgid "'Lettera_cessione_%s' % (object.lettera_id_cc)"
+msgstr ""
 
 #. module: compensazione_fatture
-#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__api_url
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_list
+msgid "Accept"
+msgstr "Akzeptieren"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_compensazione.py:0
+msgid "Acceptance"
+msgstr "Annahme"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_compensazione__state__accettata
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_search
+msgid "Accepted"
+msgstr "Akzeptiert"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__data_accettazione
+msgid "Accepted on"
+msgstr "Akzeptiert am"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_compensazione.py:0
 msgid ""
-"Address of the Nexyzen webservice (points to .../webservices/index.php)."
-msgstr "Adresse des Nexyzen-Webservice (verweist auf .../webservices/index.php)."
+"Accepted. The cycle is complete: the credit-assignment letters will be "
+"issued shortly."
+msgstr ""
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_compensazione.py:0
+msgid ""
+"Accepted. Waiting for the other participants of the cycle to accept as well."
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_indirizzo
+msgid "Address"
+msgstr "Adresse"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__cod_affiliato
@@ -37,10 +86,9 @@ msgid "Affiliate code"
 msgstr "Partnercode"
 
 #. module: compensazione_fatture
-#: model:ir.model.fields,help:compensazione_fatture.field_cc_config__cod_affiliato
-msgid ""
-"Affiliate code provided by Nexyzen (commerciale@cameracompensazione.it)."
-msgstr "Von Nexyzen bereitgestellter Partnercode (commerciale@cameracompensazione.it)."
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__importo
+msgid "Amount"
+msgstr "Betrag"
 
 #. module: compensazione_fatture
 #: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
@@ -60,6 +108,11 @@ msgid "Amount to offset"
 msgstr "Zu verrechnender Betrag"
 
 #. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Assignment chain"
+msgstr "Abtretungskette"
+
+#. module: compensazione_fatture
 #: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_config__modalita__auto
 msgid "Automatic"
 msgstr "Automatisch"
@@ -72,14 +125,69 @@ msgid ""
 msgstr "Automatisch: Rechnungen werden sofort gesendet. Mit manueller Freigabe: eine Liste wird zur Prüfung vor dem Senden vorbereitet."
 
 #. module: compensazione_fatture
-#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__config_id
-msgid "Configuration"
-msgstr "Konfiguration"
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__corpo_html
+msgid "Body"
+msgstr "Text"
 
 #. module: compensazione_fatture
-#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
-msgid "Connection"
-msgstr "Verbindung"
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_comune
+msgid "City"
+msgstr "Ort"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_compensazione__anagrafica_mancante
+msgid ""
+"Comma-separated field codes returned by the engine (anagrafica_mancante); "
+"fill in the matching fields below before accepting."
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_ragione_sociale
+msgid "Company name"
+msgstr "Firmenname"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__compensazione_id
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_lettera_list
+msgid "Compensation"
+msgstr "Verrechnung"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_compensazione.py:0
+msgid ""
+"Compensation #%(id)s: please fill in the following registry fields before "
+"accepting: %(fields)s"
+msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__id_compensazione
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__id_compensazione
+msgid "Compensation ID"
+msgstr "Verrechnungs-ID"
+
+#. module: compensazione_fatture
+#: model:ir.model,name:compensazione_fatture.model_cc_compensazione
+msgid "Compensation proposed by Nexyzen"
+msgstr "Von Nexyzen vorgeschlagene Verrechnung"
+
+#. module: compensazione_fatture
+#: model:ir.actions.server,name:compensazione_fatture.action_cc_compensazione_fetch
+#: model:ir.ui.menu,name:compensazione_fatture.menu_cc_compensazione
+msgid "Compensations to accept"
+msgstr "Zu akzeptierende Verrechnungen"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Complete the registry data below before accepting this proposal."
+msgstr "Vervollständigen Sie die untenstehenden Stammdaten, bevor Sie diesen Vorschlag akzeptieren."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__config_id
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__config_id
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__config_id
+msgid "Configuration"
+msgstr "Konfiguration"
 
 #. module: compensazione_fatture
 #. odoo-python
@@ -109,18 +217,72 @@ msgid ""
 msgstr "Rechnungen berücksichtigen, deren Fälligkeit höchstens so viele Tage entfernt ist. Z. B. 30 = fällig innerhalb von 30 Tagen."
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_nazione
+msgid "Country"
+msgstr "Land"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__create_uid
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__create_uid
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__create_uid
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__create_uid
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__create_date
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__create_date
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__create_date
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__create_date
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__ceduto_a_piva
+msgid "Credit assigned to (VAT)"
+msgstr "Forderung abgetreten an (USt-IdNr.)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__ceduto_a_ragsoc
+msgid "Credit assigned to (name)"
+msgstr "Forderung abgetreten an (Name)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__ricevuto_da_piva
+msgid "Credit received from (VAT)"
+msgstr "Forderung erhalten von (USt-IdNr.)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__ricevuto_da_ragsoc
+msgid "Credit received from (name)"
+msgstr "Forderung erhalten von (Name)"
+
+#. module: compensazione_fatture
+#: model:ir.actions.report,name:compensazione_fatture.action_report_cc_lettera
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_lettera_form
+msgid "Credit-assignment letter"
+msgstr "Forderungsabtretungsschreiben"
+
+#. module: compensazione_fatture
+#: model:ir.model,name:compensazione_fatture.model_cc_lettera
+msgid "Credit-assignment letter received from Nexyzen"
+msgstr "Von Nexyzen erhaltenes Forderungsabtretungsschreiben"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+#: model:ir.actions.act_window,name:compensazione_fatture.action_cc_lettera
+#: model:ir.actions.server,name:compensazione_fatture.action_cc_lettera_fetch
+#: model:ir.ui.menu,name:compensazione_fatture.menu_cc_lettera
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_lettera_list
+msgid "Credit-assignment letters"
+msgstr "Forderungsabtretungsschreiben"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__currency_id
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__currency_id
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__currency_id
 msgid "Currency"
 msgstr ""
@@ -142,8 +304,31 @@ msgid "Customer/Vendor"
 msgstr "Kunde/Lieferant"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__id_ciclo
+msgid "Cycle ID"
+msgstr "Zyklus-ID"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__ciclo_completo
+msgid "Cycle complete"
+msgstr "Zyklus abgeschlossen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__data
+msgid "Date"
+msgstr "Datum"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_lettera__data_consegna
+msgid "Date the letter was first retrieved through this channel."
+msgstr "Datum, an dem das Schreiben erstmals über diesen Kanal abgerufen wurde."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__display_name
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__display_name
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__display_name
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__display_name
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -158,14 +343,25 @@ msgid "Due date (days from today)"
 msgstr "Fälligkeit (Tage ab heute)"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_email
+msgid "Email"
+msgstr "E-Mail"
+
+#. module: compensazione_fatture
 #: model:ir.model.fields,help:compensazione_fatture.field_cc_config__email_proponente
 msgid "Email to which Nexyzen sends confirmations/notifications (optional)."
 msgstr "E-Mail, an die Nexyzen Bestätigungen/Benachrichtigungen sendet (optional)."
 
 #. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_compensazione__state__errore
 #: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__state__errore
 msgid "Error"
 msgstr "Fehler"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Fields requested by Nexyzen"
+msgstr "Von Nexyzen angeforderte Felder"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_ven
@@ -178,10 +374,23 @@ msgid "From (days to due date)"
 msgstr "Ab (Tage bis Fälligkeit)"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_lettera__corpo_html
+msgid "Full text of the letter, as delivered by Nexyzen."
+msgstr "Vollständiger Text des Schreibens, wie von Nexyzen zugestellt."
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__id
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__id
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__id
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__id
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,help:compensazione_fatture.field_cc_lettera__lettera_id_cc
+msgid "Identifier of the letter on the Nexyzen side (field `id`)."
+msgstr "Kennung des Schreibens auf Nexyzen-Seite (Feld `id`)."
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,help:compensazione_fatture.field_cc_config__partner_ids
@@ -189,6 +398,7 @@ msgid "If empty, all customers/vendors are considered."
 msgstr "Wenn leer, werden alle Kunden/Lieferanten berücksichtigt."
 
 #. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_search
 #: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
 msgid "In error"
 msgstr "Fehlerhaft"
@@ -197,6 +407,11 @@ msgstr "Fehlerhaft"
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__move_id
 msgid "Invoice"
 msgstr "Rechnung"
+
+#. module: compensazione_fatture
+#: model:ir.model,name:compensazione_fatture.model_cc_compensazione_fattura
+msgid "Invoice referenced by a proposed compensation"
+msgstr "Von einer vorgeschlagenen Verrechnung referenzierte Rechnung"
 
 #. module: compensazione_fatture
 #: model:ir.model,name:compensazione_fatture.model_cc_invio
@@ -209,6 +424,11 @@ msgid "Invoice to offset"
 msgstr "Zu verrechnende Rechnung"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__fattura_ids
+msgid "Invoices"
+msgstr "Rechnungen"
+
+#. module: compensazione_fatture
 #. odoo-python
 #: code:addons/compensazione_fatture/models/cc_config.py:0
 #: model:ir.actions.act_window,name:compensazione_fatture.action_cc_invio
@@ -218,16 +438,78 @@ msgid "Invoices to offset"
 msgstr "Zu verrechnende Rechnungen"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__data_creazione
+msgid "Issued on"
+msgstr "Ausgestellt am"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__write_uid
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__write_uid
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__write_uid
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__write_uid
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__write_date
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__write_date
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__write_date
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__write_date
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__write_date
 msgid "Last Updated on"
 msgstr ""
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__base_legale
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Legal basis"
+msgstr "Rechtsgrundlage"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_data_nascita_legale_rappresentante
+msgid "Legal representative — date of birth"
+msgstr "Gesetzlicher Vertreter — Geburtsdatum"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_email_legale_rappresentante
+msgid "Legal representative — email"
+msgstr "Gesetzlicher Vertreter — E-Mail"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_nome_legale_rappresentante
+msgid "Legal representative — first name"
+msgstr "Gesetzlicher Vertreter — Vorname"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_cognome_legale_rappresentante
+msgid "Legal representative — last name"
+msgstr "Gesetzlicher Vertreter — Nachname"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_luogo_nascita_legale_rappresentante
+msgid "Legal representative — place of birth"
+msgstr "Gesetzlicher Vertreter — Geburtsort"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_qualita_legale_rappresentante
+msgid "Legal representative — role"
+msgstr "Gesetzlicher Vertreter — Funktion"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_cf_legale_rappresentante
+msgid "Legal representative — tax code"
+msgstr "Gesetzlicher Vertreter — Steuernummer"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_lettera_list
+msgid "Letter"
+msgstr "Schreiben"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__lettera_id_cc
+msgid "Letter ID"
+msgstr "Schreiben-ID"
 
 #. module: compensazione_fatture
 #: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
@@ -243,6 +525,11 @@ msgstr "Höchstbetrag"
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__importo_min
 msgid "Minimum amount"
 msgstr "Mindestbetrag"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_mancante
+msgid "Missing registry fields"
+msgstr "Fehlende Stammdatenfelder"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,help:compensazione_fatture.field_cc_config__cellulare_proponente
@@ -285,9 +572,24 @@ msgid "Nexyzen: daily invoice sending"
 msgstr "Nexyzen: täglicher Rechnungsversand"
 
 #. module: compensazione_fatture
+#: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_lettera
+msgid "No credit-assignment letter"
+msgstr "Kein Forderungsabtretungsschreiben"
+
+#. module: compensazione_fatture
 #: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_invio
 msgid "No invoices to offset"
 msgstr "Keine zu verrechnenden Rechnungen"
+
+#. module: compensazione_fatture
+#: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_compensazione
+msgid "No proposed compensation"
+msgstr "Keine vorgeschlagene Verrechnung"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_lettera_search
+msgid "Not yet retrieved"
+msgstr "Noch nicht abgerufen"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__email_proponente
@@ -300,9 +602,20 @@ msgid "Notification mobile"
 msgstr "Benachrichtigungs-Mobilnummer"
 
 #. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__numero
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__numero_fattura
 msgid "Number"
 msgstr "Nummer"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__token
+msgid "One-time token"
+msgstr "Einmal-Token"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,help:compensazione_fatture.field_cc_config__importo_max
@@ -321,16 +634,123 @@ msgid "Only these customers/vendors"
 msgstr "Nur diese Kunden/Lieferanten"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__importo_residuo
+msgid "Open amount"
+msgstr "Offener Betrag"
+
+#. module: compensazione_fatture
 #. odoo-python
 #: code:addons/compensazione_fatture/models/cc_invio.py:0
 msgid "Partial sending"
 msgstr "Teilweiser Versand"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_compensazione_fattura__ruolo__debito
+msgid "Payable offset"
+msgstr "Verrechnete Verbindlichkeit"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Payable offset (towards)"
+msgstr "Verrechnete Verbindlichkeit (gegenüber)"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_list
+msgid "Payable towards"
+msgstr "Verbindlichkeit gegenüber"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__debito_verso_piva
+msgid "Payable towards (VAT)"
+msgstr "Verbindlichkeit gegenüber (USt-IdNr.)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__debito_verso_ragsoc
+msgid "Payable towards (name)"
+msgstr "Verbindlichkeit gegenüber (Name)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_telefono
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_lettera_form
+msgid "Print / Download PDF"
+msgstr "Drucken / PDF herunterladen"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Proposed compensation"
+msgstr "Vorgeschlagene Verrechnung"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+#: model:ir.actions.act_window,name:compensazione_fatture.action_cc_compensazione
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_list
+msgid "Proposed compensations"
+msgstr "Vorgeschlagene Verrechnungen"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_provincia
+msgid "Province"
+msgstr "Provinz"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_compensazione_fattura__ruolo__credito
+msgid "Receivable ceded"
+msgstr "Abgetretene Forderung"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Receivable ceded (towards)"
+msgstr "Abgetretene Forderung (gegenüber)"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_list
+msgid "Receivable towards"
+msgstr "Forderung gegenüber"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__credito_verso_piva
+msgid "Receivable towards (VAT)"
+msgstr "Forderung gegenüber (USt-IdNr.)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__credito_verso_ragsoc
+msgid "Receivable towards (name)"
+msgstr "Forderung gegenüber (Name)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__richiede_anagrafica
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_list
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_search
+msgid "Registry data needed"
+msgstr "Stammdaten erforderlich"
+
+#. module: compensazione_fatture
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
+msgid "Registry data to complete"
+msgstr "Zu vervollständigende Stammdaten"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__messaggio
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__messaggio
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_form
 #: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_form
 msgid "Result"
 msgstr "Ergebnis"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__data_consegna
+msgid "Retrieved on"
+msgstr "Abgerufen am"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__ruolo
+msgid "Role"
+msgstr "Rolle"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_sab
@@ -409,10 +829,17 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__state
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_invio__state
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_search
 #: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_invio_search
 msgid "Status"
 msgstr "Status"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_lettera__oggetto
+msgid "Subject"
+msgstr "Betreff"
 
 #. module: compensazione_fatture
 #: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_config_form
@@ -472,6 +899,11 @@ msgid "Token"
 msgstr "Token"
 
 #. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione_fattura__importo_totale
+msgid "Total amount"
+msgstr "Gesamtbetrag"
+
+#. module: compensazione_fatture
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__giorno_mar
 msgid "Tuesday"
 msgstr "Dienstag"
@@ -482,6 +914,32 @@ msgid "Type"
 msgstr "Typ"
 
 #. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "Unable to retrieve the credit-assignment letters: %s"
+msgstr "Die Forderungsabtretungsschreiben konnten nicht abgerufen werden: %s"
+
+#. module: compensazione_fatture
+#. odoo-python
+#: code:addons/compensazione_fatture/models/cc_config.py:0
+msgid "Unable to retrieve the proposed compensations: %s"
+msgstr "Die vorgeschlagenen Verrechnungen konnten nicht abgerufen werden: %s"
+
+#. module: compensazione_fatture
+#: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_compensazione
+msgid ""
+"Use the \"Compensations to accept\" menu to fetch the compensations proposed\n"
+"                by the Nexyzen clearing engine and waiting for your acceptance."
+msgstr ""
+
+#. module: compensazione_fatture
+#: model_terms:ir.actions.act_window,help:compensazione_fatture.action_cc_lettera
+msgid ""
+"Use the \"Credit-assignment letters\" menu to fetch the letters deposited by\n"
+"                Nexyzen once a compensation cycle is complete."
+msgstr ""
+
+#. module: compensazione_fatture
 #: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_invio__tipo__a
 msgid "Vendor bill (passive)"
 msgstr "Eingangsrechnung (passiv)"
@@ -490,6 +948,12 @@ msgstr "Eingangsrechnung (passiv)"
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__invia_acquisti
 msgid "Vendor bills (passive)"
 msgstr "Eingangsrechnungen (passiv)"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_compensazione__state__proposta
+#: model_terms:ir.ui.view,arch_db:compensazione_fatture.view_cc_compensazione_search
+msgid "Waiting for acceptance"
+msgstr "Wartet auf Annahme"
 
 #. module: compensazione_fatture
 #: model:ir.model.fields,field_description:compensazione_fatture.field_cc_config__api_url
@@ -510,6 +974,11 @@ msgstr "Welche Rechnungen"
 #: model:ir.model.fields.selection,name:compensazione_fatture.selection__cc_config__modalita__manuale
 msgid "With manual approval"
 msgstr "Mit manueller Freigabe"
+
+#. module: compensazione_fatture
+#: model:ir.model.fields,field_description:compensazione_fatture.field_cc_compensazione__anagrafica_cap
+msgid "ZIP code"
+msgstr "PLZ"
 
 #. module: compensazione_fatture
 #. odoo-python

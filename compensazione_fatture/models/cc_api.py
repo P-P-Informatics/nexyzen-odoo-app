@@ -88,3 +88,42 @@ class CdcClient:
             # result other than ok: treat the message as an error.
             raise CdcApiError(body.get('message') or "Unexpected result: %s" % body)
         return body
+
+    def _post_op(self, op, dati):
+        """Shared helper for the op=X/jwt/dati calls added for the
+        compensations channel (get_compensazioni, accetta_compensazione,
+        get_lettere_cessione). Raises CdcApiError unless result == 'ok'.
+        """
+        if not self._jwt:
+            self.connect()
+        body = self._post({'op': op, 'jwt': self._jwt, 'dati': dati})
+        if isinstance(body, dict) and body.get('result') != 'ok':
+            raise CdcApiError(body.get('message') or "Unexpected result: %s" % body)
+        return body
+
+    def get_compensazioni(self, partita_iva, lingua='it'):
+        """Fetch the compensations proposed by the clearing engine and still
+        waiting for acceptance, for the given VAT (op=get_compensazioni)."""
+        return self._post_op('get_compensazioni', {
+            'partita_iva': partita_iva,
+            'lingua': lingua,
+        })
+
+    def accetta_compensazione(self, token, lingua='it', anagrafica=None):
+        """Accept a proposed compensation by its one-time token
+        (op=accetta_compensazione), optionally completing the missing
+        registry data of the assignor (cedente)."""
+        dati = {'token': token, 'lingua': lingua}
+        if anagrafica:
+            dati['anagrafica'] = anagrafica
+        return self._post_op('accetta_compensazione', dati)
+
+    def get_lettere_cessione(self, partita_iva, lingua='it', tutte=False):
+        """Fetch the credit-assignment letters deposited for the given VAT
+        (op=get_lettere_cessione). tutte=True also returns letters already
+        retrieved in a previous call."""
+        return self._post_op('get_lettere_cessione', {
+            'partita_iva': partita_iva,
+            'lingua': lingua,
+            'tutte': bool(tutte),
+        })
